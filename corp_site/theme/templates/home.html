@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная — BIZ LION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+
+    <section class="text-center py-20 px-4 bg-gradient-to-r from-yellow-600 to-orange-700 text-white">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Добро пожаловать в BIZ LION</h1>
+        <p class="text-lg md:text-2xl mb-6">Профессиональные услуги для вашего бизнеса</p>
+        <a href="#contact" class="bg-white text-yellow-700 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">
+            Связаться с нами
+        </a>
+    </section>
+
+    <section class="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold">Наши Услуги</h2>
+            <p class="text-gray-600 dark:text-gray-300">Что мы можем предложить</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="p-6 bg-white dark:bg-gray-700 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Аудит</h3>
+                <p class="text-gray-600 dark:text-gray-300">Финансовый аудит для вашей компании</p>
+            </div>
+            <div class="p-6 bg-white dark:bg-gray-700 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Консалтинг</h3>
+                <p class="text-gray-600 dark:text-gray-300">Бизнес-аналитика и стратегическое планирование</p>
+            </div>
+            <div class="p-6 bg-white dark:bg-gray-700 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Поддержка</h3>
+                <p class="text-gray-600 dark:text-gray-300">Юридическая и бухгалтерская поддержка</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12">Отзывы клиентов</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow">
+                    <p class="italic">“Отличный сервис и быстрая поддержка. Рекомендую!”</p>
+                    <span class="block mt-4 font-semibold">— Анна Петрова</span>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow">
+                    <p class="italic">“Профессионалы своего дела. Помогли с отчетностью.”</p>
+                    <span class="block mt-4 font-semibold">— Иван Сидоров</span>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow">
+                    <p class="italic">“Очень доволен сотрудничеством. Услуги на уровне.”</p>
+                    <span class="block mt-4 font-semibold">— Олег Ким</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 bg-yellow-600 text-white text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Готовы начать?</h2>
+        <p class="mb-6 text-lg">Свяжитесь с нами сегодня и получите бесплатную консультацию</p>
+        <a href="/contact" class="bg-white text-yellow-700 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">
+            Оставить заявку
+        </a>
+    </section>
+
+</body>
+</html>
