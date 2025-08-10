@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Выход{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen bg-[#ffffff] text-[#653c19]">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md border border-[#c49360]">
+        <h1 class="text-2xl font-bold mb-4 text-center">Выход из аккаунта</h1>
+        <p class="mb-6 text-center">Вы уверены, что хотите выйти?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="flex justify-center gap-4">
+                <button type="submit" class="px-6 py-2 bg-[#c49360] text-white rounded hover:bg-[#a97a4d] transition">
+                    Выйти
+                </button>
+                <a href="{% url 'home' %}" class="px-6 py-2 border border-[#c49360] text-[#653c19] rounded hover:bg-[#f5f0ec] transition">
+                    Отмена
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

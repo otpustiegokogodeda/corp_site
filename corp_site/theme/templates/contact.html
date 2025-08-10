@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="bg-gray-100 dark:bg-gray-900 py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">Свяжитесь с нами</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="bg-green-100 text-green-800 p-4 mb-6 rounded">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
+      {% csrf_token %}
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Имя</label>
+        <input type="text" name="name" required class="w-full mt-1 px-3 py-2 border rounded dark:bg-gray-700 dark:text-white">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+        <input type="email" name="email" required class="w-full mt-1 px-3 py-2 border rounded dark:bg-gray-700 dark:text-white">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Сообщение</label>
+        <textarea name="message" rows="4" required class="w-full mt-1 px-3 py-2 border rounded dark:bg-gray-700 dark:text-white"></textarea>
+      </div>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Отправить</button>
+    </form>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Контактные данные</h2>
+      <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+        <li><strong>Телефон:</strong> +7 (123) 456-78-90</li>
+        <li><strong>Email:</strong> rbarsuk7@gmail.com</li>
+        <li><strong>Адрес:</strong> г. Москва, ул. Примерная, 1</li>
+      </ul>
+    </div>
+</section>
+{% endblock %}

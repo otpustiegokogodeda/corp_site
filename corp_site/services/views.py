@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Service
 
-# Create your views here.
+def service_list(request):
+    services = Service.objects.filter(is_active=True)
+    return render(request, "services/list.html", {"services": services})

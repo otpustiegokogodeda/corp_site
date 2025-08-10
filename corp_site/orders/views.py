@@ -1,3 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from services.models import Service
+from .models import Order
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
-# Create your views here.
+@login_required
+def create_order_view(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+
+    if request.method == 'POST':
+        order = Order.objects.create(
+            user=request.user,
+            service=service,
+            amount=service.price
+        )
+        messages.success(request, f"Заказ на услугу «{service.title}» успешно оформлен!")
+        return redirect('clients:dashboard')
+
+    return render(request, 'orders/confirm_order.html', {'service': service})
+
+@login_required
+def orders_list_view(request):
+    orders = Order.objects.filter(user=request.user).select_related('service').order_by('-created_at')
+    return render(request, 'orders/orders_list.html', {'orders': orders})

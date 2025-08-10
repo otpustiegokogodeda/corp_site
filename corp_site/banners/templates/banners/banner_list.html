@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Актуальные баннеры</h1>
+<div class="banners">
+    {% for banner in banners %}
+        <div class="banner">
+            {% if banner.link %}
+                <a href="{{ banner.link }}">
+                    <img src="{{ banner.image.url }}" alt="{{ banner.title }}">
+                </a>
+            {% else %}
+                <img src="{{ banner.image.url }}" alt="{{ banner.title }}">
+            {% endif %}
+            <p>{{ banner.title }}</p>
+        </div>
+    {% empty %}
+        <p>Нет активных баннеров</p>
+    {% endfor %}
+</div>
+{% endblock %}

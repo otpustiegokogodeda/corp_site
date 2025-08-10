@@ -2,7 +2,8 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
-
+import uuid
+from django.conf import settings
 
 class UserRole(models.TextChoices):
     ADMIN = "admin", _("Администратор")
@@ -13,6 +14,7 @@ class UserRole(models.TextChoices):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("Email"), unique=True)
+    name = models.CharField(_("Имя"), max_length=255, default='')
     role = models.CharField(
         _("Роль"),
         max_length=20,
@@ -27,7 +29,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["name"]
 
     class Meta:
         verbose_name = _("Пользователь")
@@ -35,3 +37,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+class EmailConfirmation(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    token = models.UUIDField(default=uuid.uuid4, unique=True)
+    confirmed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"EmailConfirmation({self.user.email})"

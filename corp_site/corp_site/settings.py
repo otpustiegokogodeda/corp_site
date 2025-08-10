@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +49,9 @@ INSTALLED_APPS = [
     'orders',
     'tailwind',
     'theme',
+    'banners',
+    'notifications',
+    
 
 
 
@@ -75,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'notifications.context_processors.popup_notifications',
             ],
         },
     },
@@ -130,7 +135,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "theme" / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -150,3 +155,33 @@ TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'rbarsuk7@example.com'
+
+EMAIL_HOST_PASSWORD = 'onlz xmac umnm xrqu'
+
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'noreply@example.com'
+
+LOGIN_REDIRECT_URL = '/clients/dashboard/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STRIPE_SECRET_KEY = 'sk_test_...'
+
+STRIPE_PUBLIC_KEY = 'pk_test_...'
+
+STRIPE_WEBHOOK_SECRET = 'whsec_b3f996467140a82bb3e83faae1fd6e999f6c2ed0339a30eb4733a350f5f5bd8e'
+
+SITE_URL = "http://127.0.0.1:8000"
+
+BITRIX_WEBHOOK_URL = "https://b24-4ga5r4.bitrix24.ru/rest/1/37v8ctdh3mrmxn8z/"
+
+EMAIL_HOST = 'smtp.gmail.com'
