@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from orders.models import Order
 from invoices.models import Invoice
 from django.views.decorators.http import require_POST
-from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import RegisterForm
@@ -73,3 +72,7 @@ def confirm_email_view(request):
             return redirect('login')
     except EmailConfirmation.DoesNotExist:
         return render(request, 'clients/invalid_token.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")

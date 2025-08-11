@@ -51,9 +51,7 @@ INSTALLED_APPS = [
     'theme',
     'banners',
     'notifications',
-    
-
-
+    'tests',
 
 ]
 

@@ -24,7 +24,7 @@ def order_created(sender, instance, created, **kwargs):
 def order_to_crm(sender, instance, created, **kwargs):
     if created:
         send_to_crm_lead(
-            name=instance.user.first_name or instance.user.username,
+            name=instance.user.name,
             email=instance.user.email,
             phone=getattr(instance.user, 'phone', ''),
             service_title=instance.service.title,

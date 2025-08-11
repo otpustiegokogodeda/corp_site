@@ -17,9 +17,14 @@ def create_order_view(request, service_id):
         messages.success(request, f"Заказ на услугу «{service.title}» успешно оформлен!")
         return redirect('clients:dashboard')
 
-    return render(request, 'orders/confirm_order.html', {'service': service})
+    return render(request, 'orders/confirm_order.html', {'service': service}) 
 
 @login_required
 def orders_list_view(request):
-    orders = Order.objects.filter(user=request.user).select_related('service').order_by('-created_at')
-    return render(request, 'orders/orders_list.html', {'orders': orders})
+    user = request.user
+    orders = Order.objects.all()
+
+    if user.role == 'manager':
+        orders = orders.filter(manager=user)
+
+    return render(request, "orders/orders_list.html", {"orders": orders})

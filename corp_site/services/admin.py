@@ -1,10 +1,14 @@
 from django.contrib import admin
 from .models import Service
+from core.admin_mixins import RoleBasedAdminMixin
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("title", "price", "is_active", "created_at")
+class ServiceAdmin(RoleBasedAdminMixin, admin.ModelAdmin):
+    list_display = ("title", "price", "is_active")
     list_filter = ("is_active",)
-    search_fields = ("title", "description")
-    ordering = ("-created_at",)
-    readonly_fields = ("created_at", "updated_at")
+    search_fields = ("title",)
+
+    allowed_roles_view = ["admin", "manager"]
+    allowed_roles_add = ["admin", "manager"]
+    allowed_roles_change = ["admin", "manager"]
+    allowed_roles_delete = ["admin"]

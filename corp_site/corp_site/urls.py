@@ -14,7 +14,6 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path("crm/", include("crm_integration.urls")),
     path("banners/", include("banners.urls")),
-    path("logout/", auth_views.LogoutView.as_view(next_page="home"), name="logout"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

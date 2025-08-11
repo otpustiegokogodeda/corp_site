@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import dashboard_view, repeat_order_view, register_view, confirm_email_view
+from .views import dashboard_view, repeat_order_view, register_view, confirm_email_view, logout_view
 
 
 app_name = 'clients'
@@ -10,4 +10,5 @@ urlpatterns = [
     path('repeat/<int:order_id>/', repeat_order_view, name='repeat_order'),
     path('register/', register_view, name='register'),
     path('confirm-email/', confirm_email_view, name='confirm_email'),
+    path("logout/", logout_view, name="logout"),
 ]

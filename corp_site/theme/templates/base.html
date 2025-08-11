@@ -56,9 +56,26 @@
 
   <div class="absolute right-6">
     {% if user.is_authenticated %}
+      {% if user.role == 'admin' or user.role == 'manager' %}
+        <a href="{% url 'banners:banner_list' %}"  class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+          Баннеры
+        </a>
+        <a href="{% url 'crm_integration:crm_clients' %}"  class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+          Особые клиенты
+        </a>
+      {% endif %}
+      <a href="{% url 'clients:dashboard' %}" class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+        Профиль
+      </a>
+      <a href="{% url 'clients:logout' %}" class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+        Выход
+      </a>
     {% else %}
-      <a href="{% url 'register' %}" class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+      <a href="{% url 'clients:register' %}" class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
         Регистрация
+      </a>
+          <a href="{% url 'login' %}" class="bg-[#653c19] text-white px-4 py-2 rounded hover:bg-[#4d2c13]">
+        Вход
       </a>
     {% endif %}
   </div>
