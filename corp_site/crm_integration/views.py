@@ -6,5 +6,5 @@ def crm_clients_view(request):
     return render(
         request,
         "crm_integration/clients.html",
-        {"leads": leads.get('result', [])}
+        {"leads": leads}
     )

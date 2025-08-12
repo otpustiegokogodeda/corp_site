@@ -1,42 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Клиенты из CRM</h1>
+<h1>Клиенты</h1>
 
 <table border="1" cellpadding="6" cellspacing="0">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Имя</th>
             <th>Email</th>
-            <th>Телефон</th>
             <th>Комментарий</th>
         </tr>
     </thead>
     <tbody>
         {% for lead in leads %}
         <tr>
-            <td>{{ lead.ID }}</td>
-            <td>{{ lead.NAME }}</td>
+            <td>{{ lead.id }}</td>
             <td>
-                {% if lead.EMAIL %}
-                    {{ lead.EMAIL.0.VALUE }}
+                {% if lead.email %}
+                    <a href="mailto:{{ lead.email }}">{{ lead.email }}</a>
                 {% else %}
                     —
                 {% endif %}
             </td>
-            <td>
-                {% if lead.PHONE %}
-                    {{ lead.PHONE.0.VALUE }}
-                {% else %}
-                    —
-                {% endif %}
-            </td>
-            <td>{{ lead.COMMENTS|default:"—" }}</td>
+            <td>{{ lead.comments|default:"—" }}</td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5" style="text-align:center;">Нет данных</td>
+            <td colspan="3" style="text-align:center;">Нет данных</td>
         </tr>
         {% endfor %}
     </tbody>

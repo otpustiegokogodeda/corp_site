@@ -20,11 +20,23 @@ def send_to_crm_lead(name, email, phone, service_title, amount):
 def get_crm_leads():
     url = f"{BITRIX_WEBHOOK_URL}/crm.lead.list.json"
     params = {
-        "select": ["ID", "TITLE", "NAME", "EMAIL", "PHONE", "COMMENTS"]
+        "select": ["ID", "TITLE", "NAME", "LAST_NAME", "EMAIL", "PHONE", "COMMENTS"]
     }
     response = requests.get(url, params=params)
-    return response.json()
+    data = response.json()
 
+    leads = []
+    for lead in data.get("result", []):
+        leads.append({
+            "id": lead.get("ID"),
+            "title": lead.get("TITLE"),
+            "name": lead.get("NAME"),
+            "last_name": lead.get("LAST_NAME"),
+            "email": lead.get("EMAIL", [{}])[0].get("VALUE", ""),
+            "phone": lead.get("PHONE", [{}])[0].get("VALUE", ""),
+            "comments": lead.get("COMMENTS", "")
+        })
+    return leads
 def update_crm_lead_status(lead_id, status):
     url = f"{BITRIX_WEBHOOK_URL}/crm.lead.update.json"
     payload = {

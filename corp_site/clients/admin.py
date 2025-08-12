@@ -8,6 +8,9 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ("role", "is_active")
     search_fields = ("email",)
     ordering = ("email",)
+    
+    readonly_fields = ("date_joined", "last_login")
+    
     fieldsets = (
         (None, {"fields": ("email", "password", "role")}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
